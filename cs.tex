@@ -148,26 +148,26 @@ Let $z = r(cos \theta + isin \theta) = r e^{i\theta}$.
 
 \textbf{Definition:}
 $\log z = \ln |z| + i \arg z = \log r + i(\theta + 2 \pi k),$ $z \neq 0, $ where $ k = 0, \pm1, \pm2, \ldots$
+
 \textbf{Remark.} The function $\log$ is a multi-valued function.
 
 \textbf{Definition:} We define $\text{Log }  z$ as the single-valued function:
 $$\text{Log } z = \ln |z| + i \text{Arg } z,$$
 where $\text{Arg } z$ is the \textit{principal value} of the argument, namely, $−\pi < \text{Arg } z \leq
 \pi$.
-\subsection{Branch cut}
 
-\textbf{Definition:}
-A branch cut is a curve (with ends possibly open, closed, or
+\textbf{Definition (Branch cut):}
+A curve (with ends possibly open, closed, or
 half-open) in the complex plane across which a holomorphic multivalued
 function is \textit{discontinuous}.
 
-\textbf{Example:} The holomorphic function $\text{Log } z$ has its branch cut defined by the
-negative semi-axis $(- \infty, 0]$.
+\textbf{Example:} $\text{Log } z$ has its branch cut defined by  $(- \infty, 0]$.
 \subsection{Integration along curves}
-For integration of a continuous function over a curve, we have:
+For the integration of a continuous function over a curve.
+
 \textit{ML Inequality:} $|\int_{\gamma}f(z) \,\text{d}z| \leq \sup_{z \in \gamma} |f(z)| \cdot \text{length} (\gamma).$
 
-\textbf{Definition:} A primitive for $f$ on $\Omega \subset \mathbb{C}$ is a function $F$ that is holomorphic
+\textbf{Definition:} A \textit{primitive} for $f$ on $\Omega \subset \mathbb{C}$ is a function $F$ that is holomorphic
 on $\Omega$ and such that $F'(z) = f(z)$ for all $z \in \Omega$.
 
 \textbf{Theorem:} If a continuous function $f$ has a primitive $F$ in an open set $\Omega$, and $\gamma$ is a curve in $\Omega$ that begins at $w_1$ and ends at $w_2$, then
@@ -221,7 +221,53 @@ constant in an open connected set $\Omega$, then $|f(z)|$ \textit{cannot} take o
 continuous on its boundary $\partial \Omega$, then $|f(z)|$ \textit{attains its maximum} on $\partial \Omega$.
 
 
+\subsection{Laurent Series}
+\textbf{Definition:} We say that $f$ has a \textit{zero of order m} at $z_0 \in \mathbb{C}$ if $$f^{(k)}(z_0) = 0, \quad k = 0,1,\ldots m-1,$$ and $f^{(m)}(z_0) \neq 0.$
 
+\textbf{Theorem} A holomorphic function $f$ has a zero of order $m$ at $z_0$ if and
+only if it can be written in the form
+$$f(z) = (z-z_0)^mg(z),$$
+where $g$ is holomorphic at $z_0$ and $g(z_0) \neq 0$.
+
+\textbf{Corollary:} The zeros of a non-constant holomorphic function are isolated;
+that is every zero has a neighbourhood inside of which \textit{it is the only
+zero}. 
+
+\textbf{Theorem (Laurent Expansion):} Let $f$ be holomorphic in the
+annulus $D = \{z : r < |z - z_0| < R\}.$ Then $f(z)$ can be expressed in the
+form $$\sum_{n = -\infty}^{\infty} a_n (z - z_0)^n,$$ where $$a_n = \frac{1}{2 \pi i} \oint_{\gamma} \frac{f(\eta)}{(\eta - z_0)^{n+1}} \, \text{d}\eta,$$ and where $\gamma$ is any simple, closed, piecewise-smooth curve in $D$ that contains
+$z_0$ in its interior.
+
+\subsection{Singularities}
+\textbf{Definition:} A point $z_0$ is called a \textit{singularity} of a complex function $f$ if $f$
+is not holomorphic at $z_0$, but every neighbourhood of $z_0$ contains at least
+one point at which $f$ is holomorphic.
+
+\textbf{Definition:} A singularity $z_0$ of a complex function is said to be \textit{isolated} if
+there exists a neighbourhood of $z_0$ in which $z_0$ is the only singularity of $f$.
+
+\textbf{Definition:} Suppose a holomorphic function $f$ has an isolated singularity
+at $z_0$ and $$f(z)= \sum_{n = -\infty}^{\infty} a_n (z - z_0)^n$$ is the Laurent expansion of $f$ valid in some annulus $0 < |z - z_0| < R.$ Then
+\begin{itemize}
+\item if $a_n = 0$ for all $n < 0$, $z_0$ is called a \textit{removable} singularity.
+\item if $a_n = 0$ for $n < -m$ where $m$ is a fixed positive integer, but $a_{-m} \neq 0,$ $z_0$ is called a \textit{pole of order} $m$.
+\item If $a_n \neq 0$ for \textit{infinitely many} negative $n$'s, $z_0$ is called an \textit{essential}
+singularity.
+\end{itemize}
+
+\textbf{Theorem:} A function $f$ has a pole of order $m$ at $z_0$ if and only if it can be
+written in the form
+$$f(z) = \frac{g(z)}{(z - z_0)^m}
+,$$
+where $g$ is holomorphic at $z_0$ and $g(z_0) \neq 0$.
+
+\subsection{Residue Theory}
+\textbf{Definition:} Given the Laurent series for a function $f$ at $z_0$, the \textit{residue} of $f$ at $z_0$ is
+$$\text{Res} [f, z_0] = a_{-1}.$$
+\textbf{Theorem:} Let $f$ be a holomorphic function inside and on a simple, closed,
+piecewise-smooth curve $\gamma$ except at the singularities $z_1, \ldots , z_n$ in its interior
+$\Omega$. Then $$\oint_{\gamma} f(z) \, \text{d}z = 2 \pi i \sum_{j=1}^n \text{Res}[f,z_j].$$
+Let $$f(z) = a_{-m}(z - z_0)^{-m} + a_{-m+1}(z - z_0)^{-m+1}+ \ldots$$ Then $$\text{Res} [f, z_0] = \lim_{z \rightarrow z_0} \frac{1}{(m-1)!}\frac{\text{d}^{m-1}}{\text{d}z^{m-1}}\left( (z - z_0)^m f(z) \right)$$
 % You can even have references
 \rule{0.3\linewidth}{0.25pt}
 \scriptsize
