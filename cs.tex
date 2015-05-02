@@ -1,0 +1,231 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb}
+\usepackage{color,graphicx,overpic}
+\usepackage{hyperref}
+
+
+
+\pdfinfo{
+  /Title (example.pdf)
+  /Creator (TeX)
+  /Producer (pdfTeX 1.40.0)
+  /Author (Seamus)
+  /Subject (Example)
+  /Keywords (pdflatex, latex,pdftex,tex)}
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+    {\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+        {\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+    }
+
+% Turn off header and footer
+\pagestyle{empty}
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+%My Environments
+\newtheorem{example}[section]{Example}
+% -----------------------------------------------------------------------
+
+\begin{document}
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\underline{Complex Analysis Cheat Sheet}} \\
+\end{center}
+
+\section{Section 1}
+
+\subsection{Complex Differentiation}
+Let $\Omega_1$, $\Omega_2 \subset \mathbb{C}$ be open sets and let $f : \Omega_1 \rightarrow \Omega_2$. We say that f is differentiable (holomorphic) at $z_0 \in \Omega_1$ if the quotient $$\frac{f(z_0 + h) -  f(z_0)}{h}$$ converges to a limit when $h \rightarrow 0$. Here $h \in \mathbb{C}$, $h \neq 0$ and $z_0 + h \in \Omega_1$. The limit of this quotient, when it exists, is denoted by $f'(z_0)$, and is called the
+derivative of $f$ at $z_0$:$$f'(z_0) = \lim_{h \rightarrow 0} \frac{f(z_0 + h) - f(z_0)}{h}.$$
+
+The function $f$ is said to be \textit{holomorphic on an open set}  $\Omega$ if $f$ is
+holomorphic at every point of $\Omega$.
+
+If $C$ is a closed subset of $\mathbb{C}$, we say that $f$ is holomorphic on $C$ if $f$ is
+holomorphic in some open set containing $C$. Finally, if $f$ is holomorphic in
+all of $\mathbb{C}$ we say that $f$ is \textit{entire}.
+
+\textbf{Corollary:} If a function $f$ is holomorphic then it is continuous.
+\subsection{Properties of the complex derivative}
+If $f$ and $g$ are holomorphic in $\Omega$ then:
+\begin{enumerate}
+\item $f + g$ is holomorphic in $\Omega$ and $(f + g)' = f' + g'.$\\
+\item $fg$ is holomorphic in $\Omega$ and $(fg)' = f'g + fg'.$\\
+\item $g(z_0) \neq 0$, then $f/g$ is holomorphic at $z_0$ and $$(f / g)' = \frac{f'g - fg'}{g^2}$$\\
+\item Moreover, if $f : \Omega \rightarrow U$ and $g : U \rightarrow \mathbb{C}$ are holomorphic, the chain rule holds:
+$$(g \circ f)(z) = g'(f(z))f'(z), \forall z \in \Omega.$$
+\end{enumerate}
+\subsection{Cauchy-Riemann equations}
+The functions $u$ and $v$ satisfy the following:
+$$\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y} \, \text{ and } \, \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}.$$
+\textbf{Remark:} The Cauchy-Riemann equations link real and complex analysis.
+$$\frac{\partial}{\partial z} = \frac{1}{2}\left(\frac{\partial }{\partial x} + \frac{1}{i} \frac{\partial}{\partial y}\right) \, \text{ and } \, \frac{\partial}{\partial \overline{z}} = \frac{1}{2}\left(\frac{\partial }{\partial x} - \frac{1}{i} \frac{\partial}{\partial y}\right).$$
+\textbf{Theorem:} Let $f(z) = u(x, y) + iv(x, y)$, $z = x + iy$. If $f$ is holomorphic
+at $z_0$, then
+$$\frac{\partial f}{\partial \overline{z}}(z_0) = 0 \, \text{ and } \, f'(z_0) = \frac{\partial f}{\partial z}(z_0) = 2\frac{\partial u}{\partial z}(z_0).$$
+
+\textbf{Theorem:} Suppose $f = u + iv$ is a complex-valued function defined on
+an open set $\Omega$. If $u$ and $v$ are continuously differentiable and satisfy the
+Cauchy-Riemann equations on $\Omega$, then $f$ is holomorphic on $\Omega$ and $f'(z) = \partial f(z)/ \partial z$.
+\subsection{Harmonic functions}
+\textbf{Definition:} Let $\varphi = \varphi(x, y)$, $x,y \in \mathbb{R}$ be a real function of two variables.
+$\varphi$ is said to be \textit{harmonic} in an open set $\Omega \in \mathbb{R}^2$ if
+$$\Delta \varphi(x, y) := \frac{\partial^2 \varphi}{\partial x^2}(x,y) + \frac{\partial^2 \varphi}{\partial y^2}(x,y) = \varphi''_{xx}(x,y) + \varphi''_{yy}(x,y) = 0.$$
+\textbf{Note:} Usually $\Delta$ is called the Laplace operator.
+
+\textbf{Theorem:} Let $f(z) = u(x, y) + iv(x, y)$ be holomorphic in an open set
+$\Omega \subset \mathbb{C}$. Then $u$ and $v$ are harmonic. For the proof, use the Cauchy-Riemann equations.
+
+\textbf{Theorem (Harmonic Conjugate):} Let $u$ be harmonic in an open set $\Omega \subset \mathbb{C}$. Then there exists a
+harmonic function $v$ such that $f = u + iv$ is holomorphic in $\Omega$. In this case
+$v$ is called the \textit{harmonic conjugate} to $u$.
+
+\textbf{Theorem:} Assume that $f = u + iv$ is a holomorphic function defined on
+an open connected domain $\Omega \subset \mathbb{C}$. Consider the two equations
+$$a) \quad u(x, y) = C \qquad \text{and} \qquad b) \quad v(x, y) = K,$$ where $C, K$ are two real constants.
+Assume that the equations $a)$ and $b)$ have the same solution $(x_0, y_0)$ and
+that $f'(z_0) \neq 0$ at $z_0 = x_0 + iy_0.$ Then the curve defined by the equation $a)$
+is \textit{orthogonal} to the curve defined by the equation $b)$ at $(x_0, y_0)$.
+
+\textit{Proof.} Use the Cauchy-Riemann equations to prove that the vectors $\nabla u$ and $\nabla v$ are orthogonal at $(x_0,y_0)$.
+
+
+\subsection{Cauchy-Riemann equations in polar coordinates.}
+For a holomorphic function $f = u + iv$, introduce
+$$x = r \cos \theta, \quad y = r \sin \theta, \quad r =
+\sqrt{x^2 + y^2}, \quad \theta = \arctan y/x.$$
+Then
+$$u'_r = \frac{1}{r}v'_{\theta} \quad \text{and similarly} \quad v'_r  = - \frac{1}{r}u'_{\theta}.$$
+\subsection{Logarithmic functions}
+Let $z = r(cos \theta + isin \theta) = r e^{i\theta}$.
+
+\textbf{Definition:}
+$\log z = \ln |z| + i \arg z = \log r + i(\theta + 2 \pi k),$ $z \neq 0, $ where $ k = 0, \pm1, \pm2, \ldots$
+\textbf{Remark.} The function $\log$ is a multi-valued function.
+
+\textbf{Definition:} We define $\text{Log }  z$ as the single-valued function:
+$$\text{Log } z = \ln |z| + i \text{Arg } z,$$
+where $\text{Arg } z$ is the \textit{principal value} of the argument, namely, $−\pi < \text{Arg } z \leq
+\pi$.
+\subsection{Branch cut}
+
+\textbf{Definition:}
+A branch cut is a curve (with ends possibly open, closed, or
+half-open) in the complex plane across which a holomorphic multivalued
+function is \textit{discontinuous}.
+
+\textbf{Example:} The holomorphic function $\text{Log } z$ has its branch cut defined by the
+negative semi-axis $(- \infty, 0]$.
+\subsection{Integration along curves}
+For integration of a continuous function over a curve, we have:
+\textit{ML Inequality:} $|\int_{\gamma}f(z) \,\text{d}z| \leq \sup_{z \in \gamma} |f(z)| \cdot \text{length} (\gamma).$
+
+\textbf{Definition:} A primitive for $f$ on $\Omega \subset \mathbb{C}$ is a function $F$ that is holomorphic
+on $\Omega$ and such that $F'(z) = f(z)$ for all $z \in \Omega$.
+
+\textbf{Theorem:} If a continuous function $f$ has a primitive $F$ in an open set $\Omega$, and $\gamma$ is a curve in $\Omega$ that begins at $w_1$ and ends at $w_2$, then
+$$\int_{\gamma} f(z)\, \text{d}z = F(w_2) - F(w_1).$$
+
+\textbf{Corollary:} If $\gamma$ is a closed curve in an open set $\Omega$, $f$ is continuous and
+has a primitive in $\Omega$, then $$\int_{\gamma} f(z)\, \text{d}z = 0.$$
+This is immediate since the end-points of a closed curve coincide.
+
+\textbf{Corollary:} If $f$ is holomorphic in an open connected set $\Omega$ and $f' = 0$,
+then $f$ is constant.
+
+\textbf{Theorem (Green's theorem):} Suppose $P(x, y)$ and $Q(x, y)$ have continuous
+first partial derivatives in an open set $\widetilde{\Omega}$ containing a simple, closed,
+piecewise-smooth curve $\gamma$ and its interior $\Omega \subset \widetilde{\Omega}.$ Then $$\oint_{\gamma} P \, \text{d}x + Q \, \text{d} y = \iint_{\Omega} \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right) \, \text{d}x\, \text{d}y.$$
+
+
+\subsection{Cauchy's integral formulas}
+
+\textbf{Theorem (Cauchy-Goursat):}
+Let $f$ be holomorphic inside $\Omega$
+bounded by a closed piecewise-smooth simple curve $\gamma$ and also at the points
+of $\gamma$. Then
+$$\oint_{\gamma} f(z) \, \text{d}z = 0.$$
+
+\textbf{Theorem (Deformation):}
+Let $\gamma_1$ and $\gamma_2$ be two simple, closed,
+piecewise-smooth curves with $\gamma_2$ lying wholly inside $\gamma_1$ and suppose $f$ is
+holomorphic in a domain containing the region between $\gamma_1$ and $\gamma_2$. Then
+$$\int_{\gamma_1} f(z) \, \text{d}z = \int_{\gamma_2} f(z) \, \text{d}z  $$
+
+\textbf{Theorem (Cauchy’s integral formulae):}
+Let $f$ be holomorphic inside and on a simple, closed,
+piecewise-smooth curve $\gamma$. Then for any point $z_0$ interior to $\gamma$ we have
+$$f(z_0) = \frac{1}{2 \pi i} \oint_{\gamma} \frac{f(z)}{z - z_0} \, \text{d}z.$$
+
+\textbf{Theorem:} Let $f$ be holomorphic in an open set $\Omega$, then $f$ has \textit{infinitely}
+many complex derivatives in $\Omega$. Moreover, for a simple, closed, piecewise-smooth
+curve $\gamma \subset \Omega$ and any $z$ lying inside $\gamma$ we have
+$$\frac{\text{d}^n f(z)}{\text{d}z^n} = \frac{n!}{2 \pi i} \oint_{\gamma} \frac{f(\eta)}{(\eta - z)^{n+1}} \, \text{d}\eta$$
+
+\textbf{Corollary:} If $f$ is holomorphic in $\Omega$, then all its derivatives $f',f'', \ldots $ are holomorphic.
+
+\textbf{Theorem (Liouville's):} If an entire function is bounded, then it
+is constant.
+
+\textbf{Theorem (Maximum Modulus Principle):}  If $f$ is holomorphic and not
+constant in an open connected set $\Omega$, then $|f(z)|$ \textit{cannot} take on a maximum value in $\Omega$.
+
+\textbf{Corollary:} If $f$ is holomorphic in a bounded open connected set and
+continuous on its boundary $\partial \Omega$, then $|f(z)|$ \textit{attains its maximum} on $\partial \Omega$.
+
+
+
+% You can even have references
+\rule{0.3\linewidth}{0.25pt}
+\scriptsize
+\bibliographystyle{abstract}
+\bibliography{refFile}
+\end{multicols}
+\end{document}
